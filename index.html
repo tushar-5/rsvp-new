@@ -1,107 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RSVP Form</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="https://webtracking-v01.bpmonline.com/JS/track-cookies.js"></script>
-  <script src="https://webtracking-v01.creatio.com/JS/create-object.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    input[type="text"], input[type="email"], input[type="tel"] {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-    }
-    .checkbox-group label {
-      margin-left: 5px;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSVP Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://webtracking-v01.bpmonline.com/JS/track-cookies.js"></script>
+    <script src="https://webtracking-v01.creatio.com/JS/create-object.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+      }
+      .checkbox-group label {
+        margin-left: 5px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>RSVP Form</h2>
 
-<h2>RSVP Form</h2>
+    <form
+      id="rsvpForm"
+      name="landingForm"
+      onsubmit="createObject(); return false;"
+    >
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="company">Company Name:</label>
+        <input type="text" id="company" name="company" />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" />
+      </div>
+      <div class="form-group checkbox-group">
+        <input type="checkbox" id="rsvp" name="rsvp" />
+        <label for="rsvp">RSVP (Check for Yes)</label>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
 
-<form id="rsvpForm" name="landingForm" onsubmit="createObject(); return false;">
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-  </div>
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-  </div>
-  <div class="form-group">
-    <label for="company">Company Name:</label>
-    <input type="text" id="company" name="company">
-  </div>
-  <div class="form-group">
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone">
-  </div>
-  <div class="form-group checkbox-group">
-    <input type="checkbox" id="rsvp" name="rsvp">
-    <label for="rsvp">RSVP (Check for Yes)</label>
-  </div>
-  <button type="submit">Submit</button>
-</form>
-
-<script>
-  var config = {
-      fields: {
-          "Contact": "#name", // Name of a contact, registering to the event
+    <script>
+      var config = {
+        fields: {
+          Contact: "#name", // Name of a contact, registering to the event
           "Contact.MobilePhone": "#phone", // Contact's mobile phone
           "Contact.JobTitle": "#company", // Contact's job title
-          "Contact.Email": "#email" // Contact's email
-      },
-      contactFields: {
-          "FullName": "#name", // Name of a contact
-          "Phone": "#phone", // Contact's mobile phone
-          "Email": "#email" // Contact's email
-      },
-      customFields: {
-          "RSVP": "#rsvp" // Custom field for RSVP checkbox
-      },
-      landingId: "b0811ad9-ca59-45c9-a001-22b8fedb7ab2",
-      serviceUrl: "https://implemify.creatio.com/0/ServiceModel/GeneratedObjectWebFormService.svc/SaveWebFormObjectData",
-      redirectUrl: "" // Add a redirect URL here if needed
-  };
+          "Contact.Email": "#email", // Contact's email
+        },
+        contactFields: {
+          FullName: "#name", // Name of a contact
+          Phone: "#phone", // Contact's mobile phone
+          Email: "#email", // Contact's email
+        },
+        customFields: {},
+        landingId: "b0811ad9-ca59-45c9-a001-22b8fedb7ab2",
+        serviceUrl:
+          "https://implemify.creatio.com/0/ServiceModel/GeneratedObjectWebFormService.svc/SaveWebFormObjectData",
+        redirectUrl: "", // Add a redirect URL here if needed
+      };
 
-  function createObject() {
-      landing.createObjectFromLanding(config);
-  }
+      function createObject() {
+        landing.createObjectFromLanding(config);
+      }
 
-  function initLanding() {
-      landing.initLanding(config);
-  }
+      function initLanding() {
+        landing.initLanding(config);
+      }
 
-  jQuery(document).ready(initLanding);
-</script>
-
-</body>
+      jQuery(document).ready(initLanding);
+    </script>
+  </body>
 </html>
